@@ -1,0 +1,5 @@
+#This file i'm going to push using personal access token ( generated )
+
+# command : git remote set-url origin https://<PAT>@github.com/username/remo-name.git
+
+
