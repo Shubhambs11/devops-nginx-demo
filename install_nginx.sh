@@ -8,4 +8,4 @@ sudo apt-get install nginx -y
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
-echo "NGINX Installed"
+echo "NGINX Installed successfully"
