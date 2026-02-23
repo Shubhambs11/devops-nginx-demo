@@ -1,425 +1,227 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    Single-file modern, responsive, accessible landing page.
-    - No external assets (system fonts, inline CSS & JS)
-    - Dark theme with a clean visual hierarchy
-    - Mobile-first navigation, cards, pricing, CTA, footer
-    - Easy to customize: edit CSS variables in :root
-  -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>YourBrand – Clean & Modern</title>
-  <meta name="description" content="A polished single-file web page template: responsive, accessible, and performance-minded." />
-  <style>
-    :root{
-      /* ===== Color System ===== */
-      --bg: #0b0d10;        /* base background (near-black blue) */
-      --surface: #111418;   /* section background */
-      --elev: #171b21;      /* elevated panels/cards */
-      --text: #e8eaed;      /* primary text */
-      --muted: #a8b0bd;     /* secondary text */
-      --primary: #4da3ff;   /* brand accent */
-      --primary-600:#348df0;
-      --ring: #8cc6ff;      /* focus ring */
-      --border: rgba(255,255,255,.10);
+    <meta charset="UTF-8">
+    <title>Shubham | DevOps Engineer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      /* ===== Spacing Scale (4px baseline) ===== */
-      --s-1: .25rem;  /* 4px  */
-      --s-2: .5rem;   /* 8px  */
-      --s-3: .75rem;  /* 12px */
-      --s-4: 1rem;    /* 16px */
-      --s-5: 1.5rem;  /* 24px */
-      --s-6: 2rem;    /* 32px */
-      --s-7: 3rem;    /* 48px */
-      --s-8: 4rem;    /* 64px */
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-      --radius: 12px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-
-      /* ===== Typography ===== */
-      --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      --fs-1: .875rem; /* small */
-      --fs-2: 1rem;    /* base */
-      --fs-3: 1.125rem;/* lead */
-      --fs-h3: 1.25rem;
-      --fs-h2: 1.75rem;
-      --fs-h1: clamp(1.8rem, 2.5vw + 1.2rem, 3rem);
-      --max-line: 75ch; /* ideal reading width */
-    }
-
-    *{ box-sizing:border-box }
-    html,body{ height:100% }
-    body{
-      margin:0;
-      font-family: var(--font);
-      color: var(--text);
-      background:
-        radial-gradient(1000px 500px at 10% -10%, #0e1220 10%, transparent 60%),
-        radial-gradient(800px 400px at 90% 0%, #0f1a2a 8%, transparent 60%),
-        var(--bg);
-      line-height:1.6;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    /* ===== Layout primitives ===== */
-    .container{ width:min(1100px, 92%); margin-inline:auto }
-    .narrow{ width:min(760px, 92%) }
-    .section{ padding: var(--s-8) 0 }
-    .section--alt{ background: var(--surface) }
-
-    /* ===== Skip link ===== */
-    .skip-link{
-      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
-    }
-    .skip-link:focus{
-      left: var(--s-4); top: var(--s-4); width:auto; height:auto;
-      background: var(--ring); color:#082040;
-      padding:.5rem .75rem; border-radius:8px;
-      box-shadow: var(--shadow);
-    }
-
-    /* ===== Header / Nav ===== */
-    .site-header{
-      position: sticky; top:0; z-index: 20;
-      backdrop-filter: saturate(140%) blur(12px);
-      background: color-mix(in oklab, var(--bg) 85%, transparent);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .header-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: var(--s-4) 0;
-    }
-    .brand{ display:flex; align-items:center; gap: var(--s-3); color: inherit; text-decoration:none }
-    .brand__logo{ width:28px; height:28px; display:grid; place-items:center }
-    .brand__name{ font-weight:700; letter-spacing:.2px }
-
-    /* Inline logo (SVG circle + initial) */
-    .logo{
-      width: 28px; height: 28px; border-radius:50%;
-      background: linear-gradient(180deg, var(--primary), var(--primary-600));
-      color:#07121f; font-weight:700; font-size:.9rem; display:grid; place-items:center;
-      box-shadow: var(--shadow);
-    }
-
-    .nav__toggle{
-      display:none;
-      background: var(--surface);
-      color: var(--text);
-      border:1px solid var(--border);
-      padding:.55rem .75rem; border-radius: 10px; cursor:pointer;
-    }
-    .nav__list{
-      display:flex; gap: var(--s-5); list-style:none; margin:0; padding:0;
-    }
-    .nav__link{
-      color: var(--muted); text-decoration:none; padding:.25rem .1rem; border-radius:6px;
-    }
-    .nav__link:hover{ color: var(--text) }
-    .nav__link:focus{ outline: 2px solid var(--ring); outline-offset: 2px }
-
-    /* ===== Hero ===== */
-    .hero{ padding: clamp(3rem, 6vw, 6rem) 0 }
-    .hero__inner{
-      display:grid; gap: var(--s-6);
-      grid-template-columns: 1.1fr .9fr; align-items:center;
-    }
-    .hero__copy h1{ font-size: var(--fs-h1); line-height:1.15; margin:0 0 var(--s-4); max-width: var(--max-line) }
-    .lead{ font-size: var(--fs-3); color: var(--muted); margin: 0 0 var(--s-5); max-width: var(--max-line) }
-    .actions{ display:flex; gap: var(--s-4); align-items:center; flex-wrap:wrap }
-
-    .hero__visual .mockup{
-      background: linear-gradient(180deg, var(--elev), #10131a);
-      border:1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      min-height: 260px;
-      display:grid; place-items:center;
-      color: var(--muted);
-      padding: var(--s-6);
-    }
-
-    /* ===== Buttons ===== */
-    .button{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:.5rem; font-weight:600; letter-spacing:.2px;
-      background: linear-gradient(180deg, var(--primary), var(--primary-600));
-      color:#07121f; border:none; border-radius: 12px;
-      padding:.75rem 1rem; text-decoration:none; box-shadow: var(--shadow);
-      transition: transform .12s ease, filter .12s ease;
-    }
-    .button:hover{ filter: brightness(1.05); transform: translateY(-1px) }
-    .button:focus{ outline: 2px solid var(--ring); outline-offset:2px }
-    .button--ghost{
-      background: transparent; color: var(--text);
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow:none;
-    }
-    .button--sm{ padding:.5rem .75rem; font-size: var(--fs-1) }
-    .button--lg{ padding: .9rem 1.15rem; font-size: var(--fs-3) }
-
-    /* ===== Grid / Cards ===== */
-    .grid{
-      display:grid; gap: var(--s-5);
-      grid-template-columns: repeat(12, 1fr);
-    }
-    .cards > .card{
-      grid-column: span 4;
-      background: var(--elev);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      padding: var(--s-6);
-      box-shadow: var(--shadow);
-    }
-    .card h3{ font-size: var(--fs-h3); margin:0 0 var(--s-3) }
-    .muted{ color: var(--muted) }
-
-    /* ===== Pricing ===== */
-    .prices > .price{
-      grid-column: span 4;
-      background: var(--elev);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      padding: var(--s-6);
-    }
-    .price--highlight{
-      border-color: color-mix(in oklab, var(--primary) 55%, white 0%);
-      outline: 2px solid color-mix(in oklab, var(--primary) 35%, transparent);
-      transform: translateY(-2px);
-    }
-    .price__value{ font-size: 2rem; font-weight:700; margin:.25rem 0 var(--s-4) }
-    .list{ margin:0 0 var(--s-5); padding-left: 1rem }
-    .list li{ margin-bottom:.35rem; color: var(--muted) }
-
-    /* ===== CTA ===== */
-    .cta{
-      padding: var(--s-7) 0;
-      background:
-        radial-gradient(600px 300px at 50% -40%, color-mix(in oklab, var(--primary) 25%, transparent), transparent 70%),
-        var(--surface);
-      border-top: 1px solid rgba(255,255,255,.06);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .cta__inner{ display:flex; align-items:center; justify-content:space-between; gap: var(--s-5) }
-    .cta h2{ margin:0 }
-
-    /* ===== Footer ===== */
-    .site-footer{ padding: var(--s-6) 0; color: var(--muted) }
-    .footer-inner{ display:flex; align-items:center; justify-content:space-between; gap: var(--s-5) }
-    .footer-links{ list-style:none; display:flex; gap: var(--s-4); margin:0; padding:0 }
-    .footer-links a{ color: var(--muted); text-decoration:none }
-    .footer-links a:hover{ color: var(--text) }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 960px){
-      .hero__inner{ grid-template-columns: 1fr }
-      .nav__toggle{ display:inline-flex }
-      .nav{
-        position:relative;
-      }
-      .nav__list{
-        display:none; position:absolute; right:0; top:48px; flex-direction:column; gap: var(--s-3);
-        background: var(--surface); border:1px solid var(--border); border-radius:12px; padding: var(--s-4);
-        box-shadow: var(--shadow);
-      }
-      .nav__list.is-open{ display:flex }
-    }
-    @media (max-width: 800px){
-      .grid{ grid-template-columns: repeat(6, 1fr) }
-      .cards > .card,
-      .prices > .price{ grid-column: span 6 }
-      .cta__inner{ flex-direction:column; text-align:center }
-    }
-  </style>
-</head>
-<body>
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <!-- ===== Header ===== -->
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="#" aria-label="YourBrand home">
-        <span class="brand__logo logo" aria-hidden="true">Y</span>
-        <span class="brand__name">YourBrand</span>
-      </a>
-
-      <nav class="nav" aria-label="Primary">
-        <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
-        <ul id="nav-menu" class="nav__list">
-          <li><a class="nav__link" href="#features">Features</a></li>
-          <li><a class="nav__link" href="#pricing">Pricing</a></li>
-          <li><a class="nav__link" href="#about">About</a></li>
-          <li><a class="nav__link" href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ===== Main ===== -->
-  <main id="main">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero__inner">
-        <div class="hero__copy">
-          <h1>Make your page feel premium.</h1>
-          <p class="lead">Clean layout, thoughtful spacing, and crisp typography—without the bloat. This single-file template gives you a beautiful foundation that’s fast to load and easy to customize.</p>
-          <div class="actions">
-            <a href="#features" class="button button--lg">Get Started</a>
-            <a href="#about" class="button button--ghost button--lg">Learn More</a>
-          </div>
-        </div>
-        <div class="hero__visual" aria-hidden="true">
-          <div class="mockup">
-            <!-- SVG placeholder illustration -->
-            <svg width="100%" height="160" viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Product mockup">
-              <defs>
-                <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#4da3ff"/>
-                  <stop offset="100%" stop-color="#348df0"/>
-                </linearGradient>
-              </defs>
-              <rect x="10" y="10" width="280" height="140" rx="14" fill="#0e1622" stroke="#243246" />
-              <rect x="310" y="10" width="280" height="140" rx="14" fill="#0e1622" stroke="#243246" />
-              <circle cx="150" cy="80" r="40" fill="url(#grad)" opacity=".35" />
-              <circle cx="450" cy="80" r="40" fill="url(#grad)" opacity=".35" />
-              <text x="150" y="86" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="18" text-anchor="middle" fill="#a8b0bd">Card</text>
-              <text x="450" y="86" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="18" text-anchor="middle" fill="#a8b0bd">Panel</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section id="features" class="section">
-      <div class="container">
-        <header class="section__header">
-          <h2 style="font-size:var(--fs-h2); margin:0 0 var(--s-3)">Features</h2>
-          <p class="muted">Everything you need to ship faster and look great doing it.</p>
-        </header>
-
-        <div class="grid cards">
-          <article class="card">
-            <h3>Responsive by default</h3>
-            <p>Mobile-first layout using modern CSS grid and flex utilities. Resize the window—components reflow gracefully.</p>
-          </article>
-          <article class="card">
-            <h3>Accessible & semantic</h3>
-            <p>Landmarks, contrast, focus states, and assistive-friendly navigation built-in—no frameworks required.</p>
-          </article>
-          <article class="card">
-            <h3>Performance-minded</h3>
-            <p>Lean CSS, system fonts, and minimal JS keep the page snappy with great Core Web Vitals.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing -->
-    <section id="pricing" class="section section--alt">
-      <div class="container">
-        <header class="section__header">
-          <h2 style="font-size:var(--fs-h2); margin:0 0 var(--s-3)">Simple pricing</h2>
-          <p class="muted">Start free. Upgrade when you’re ready.</p>
-        </header>
-
-        <div class="grid prices">
-          <div class="price">
-            <h3>Free</h3>
-            <p class="price__value">$0</p>
-            <ul class="list">
-              <li>Basic components</li>
-              <li>Email support</li>
-              <li>Community access</li>
-            </ul>
-            <a href="#" class="button button--sm">Choose</a>
-          </div>
-          <div class="price price--highlight">
-            <h3>Pro</h3>
-            <p class="price__value">$19/mo</p>
-            <ul class="list">
-              <li>All components</li>
-              <li>Priority support</li>
-              <li>Team features</li>
-            </ul>
-            <a href="#" class="button button--sm">Choose</a>
-          </div>
-          <div class="price">
-            <h3>Business</h3>
-            <p class="price__value">$49/mo</p>
-            <ul class="list">
-              <li>Unlimited projects</li>
-              <li>Dedicated success</li>
-              <li>SSO & audit logs</li>
-            </ul>
-            <a href="#" class="button button--sm">Choose</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="container narrow">
-        <h2 style="font-size:var(--fs-h2); margin:0 0 var(--s-3)">About</h2>
-        <p>We focus on fundamentals: spacing, clarity, and consistency. The result is a timeless look that works for any brand. This template keeps your code simple and your UI refined.</p>
-      </div>
-    </section>
-
-    <!-- Contact / CTA -->
-    <section id="contact" class="cta">
-      <div class="container cta__inner">
-        <h2>Ready to refresh your page?</h2>
-        <a href="mailto:hello@example.com" class="button button--lg">Contact us</a>
-      </div>
-    </section>
-  </main>
-
-  <!-- ===== Footer ===== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> YourBrand. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Terms</a></li>
-        <li><a href="#">Status</a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <script>
-    // ===== Mobile nav toggle (accessible & minimal) =====
-    (function(){
-      const toggle = document.querySelector('.nav__toggle');
-      const menu = document.getElementById('nav-menu');
-      if (!toggle || !menu) return;
-      toggle.addEventListener('click', () => {
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!expanded));
-        menu.classList.toggle('is-open');
-      });
-    })();
-
-    // ===== Current Year =====
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ===== Smooth scroll (native + focus management) =====
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href').slice(1);
-        const target = document.getElementById(id);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Move focus after scroll for accessibility
-          setTimeout(() => target.setAttribute('tabindex','-1'), 300);
-          setTimeout(() => target.focus({ preventScroll: true }), 350);
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-      });
-    });
-  </script>
+
+        body {
+            background: #0f172a;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0f172a;
+            position: sticky;
+            top: 0;
+        }
+
+        header h1 {
+            color: #38bdf8;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        section {
+            padding: 80px 10%;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 90vh;
+        }
+
+        .hero-text h2 {
+            font-size: 48px;
+        }
+
+        .hero-text span {
+            color: #38bdf8;
+        }
+
+        .hero-text p {
+            margin: 20px 0;
+            color: #cbd5e1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #38bdf8;
+            color: #0f172a;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #0ea5e9;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: #334155;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #38bdf8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #1e293b;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>DevOps Engineer</h1>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h2>Hello, I'm <span>Shubham</span></h2>
+        <p>DevOps Engineer | Cloud Enthusiast | Automation Specialist  
+           I build scalable infrastructure, automate deployments, and ensure reliable CI/CD pipelines.</p>
+        <a href="#contact" class="btn">Hire Me</a>
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>Who I Am</h3>
+            <p>Passionate DevOps Engineer focused on automation, cloud computing, and infrastructure as code.</p>
+        </div>
+        <div class="card">
+            <h3>My Mission</h3>
+            <p>To bridge the gap between development and operations with scalable, secure, and efficient systems.</p>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>Cloud</h3>
+            <p>AWS, Azure, GCP</p>
+        </div>
+        <div class="card">
+            <h3>CI/CD</h3>
+            <p>Jenkins, GitHub Actions, GitLab CI</p>
+        </div>
+        <div class="card">
+            <h3>Containers</h3>
+            <p>Docker, Kubernetes</p>
+        </div>
+        <div class="card">
+            <h3>Infrastructure</h3>
+            <p>Terraform, Ansible</p>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>CI/CD Pipeline</h3>
+            <p>Automated deployment pipeline using Jenkins, Docker, and Kubernetes.</p>
+        </div>
+        <div class="card">
+            <h3>AWS Infrastructure Setup</h3>
+            <p>Provisioned scalable infrastructure using Terraform on AWS.</p>
+        </div>
+        <div class="card">
+            <h3>Monitoring System</h3>
+            <p>Implemented monitoring using Prometheus and Grafana.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+    <div class="card-container">
+        <div class="card">
+            <h3>Email</h3>
+            <p>shubham@example.com</p>
+        </div>
+        <div class="card">
+            <h3>LinkedIn</h3>
+            <p>linkedin.com/in/shubham</p>
+        </div>
+        <div class="card">
+            <h3>GitHub</h3>
+            <p>github.com/shubham</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Shubham | DevOps Engineer Portfolio
+</footer>
+
 </body>
 </html>
-
