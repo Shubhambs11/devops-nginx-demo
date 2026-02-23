@@ -1,6 +1,6 @@
 # Nginx Project
 
-## Intro 
+## Introduction
 This Project includes two webpages,
 1. Test Webpage (Run it on linux)
 2. My portfolio (Run it on Docker Container)
